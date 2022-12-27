@@ -1,6 +1,13 @@
 import { createApp } from 'vue';
-import PostComponent from "./components/PostComponent.vue";
+import router from "./router";
 import './bootstrap';
-const app = createApp({});
-app.component('post-component', PostComponent);
+import Index from './components/index.vue';
+const app = createApp({
+    components:{
+        Index
+    },
+    router
+});
+app.use(router)
 app.mount('#app');
+
