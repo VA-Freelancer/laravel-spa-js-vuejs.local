@@ -1,7 +1,6 @@
 <template>
     <div class="">
-        <router-link to="/posts">Posts</router-link> <br />
-        <router-link to="/tags">Tags</router-link>
+        <router-link :to="{ name: 'person.index'}">People</router-link>
         <router-view></router-view>
 
     </div>
