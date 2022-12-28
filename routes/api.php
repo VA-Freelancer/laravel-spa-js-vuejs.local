@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function (){
-//    Route::post('/', StoreController::class);
-//    Route::get('/', IndexController::class);
-//    Route::patch('/{person}', UpdateController::class);
-//    Route::delete('/{person}', DeleteController::class);
-//});
+Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function (){
+    Route::post('/', StoreController::class);
+    Route::get('/', IndexController::class);
+    Route::patch('/{person}', UpdateController::class);
+    Route::delete('/{person}', DeleteController::class);
+});

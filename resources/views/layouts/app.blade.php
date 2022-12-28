@@ -18,10 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="container">
-            @yield('content')
-        </div>
-
+        @yield('content')
     </div>
 </body>
 </html>
