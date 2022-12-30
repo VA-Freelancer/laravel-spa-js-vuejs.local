@@ -1,4 +1,8 @@
 <template>
+    <div class="d-flex mb-3" style="gap: 20px">
+        <span><router-link :to="{name: 'person.index'}" class="btn btn-dark">Listing</router-link></span>
+        <span><router-link :to="{name: 'person.show', params: {id: this.$route.params.id}}" class="btn btn-dark">Detail</router-link></span>
+    </div>
     <div class="w-25">
         <div class="mb-3">
             <input type="text" v-model="name" id="name" placeholder="Name" class="form-control">
@@ -38,13 +42,14 @@ export default {
                     this.name = res.data.name
                     this.age = res.data.age
                     this.job = res.data.job
+                    this.id = res.data.id
                     console.log(res)
                 })
         },
         update(){
             axios.patch(`/api/people/${this.$route.params.id}`, {name: this.name, age: this.age, job: this.job})
-                .then(res=>{
-                    router.push({ name: 'person.show'})
+                .then(res =>{
+                    router.push({ name: 'person.show', params: { id: this.$route.params.id} })
                 })
         }
     }
