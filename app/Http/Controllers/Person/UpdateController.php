@@ -12,6 +12,6 @@ class UpdateController extends Controller
     {
         $data = $request->validated();
         if (!empty($person)) $person->update($data);
-        return $person;
+        return response($person);
     }
 }

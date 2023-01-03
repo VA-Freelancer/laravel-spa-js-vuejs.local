@@ -27,8 +27,9 @@ export default {
         getPerson(){
             axios.get( `/api/people/${this.$route.params.id}` )
                 .then(res =>{
-                    this.person = res.data
-                    console.log(this.person)
+                    console.log(res.data.data)
+                    this.person = res.data.data
+
                 })
         },
     },
