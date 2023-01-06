@@ -11,7 +11,7 @@
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody v-if="people">
                 <template v-for="person in people">
                     <tr>
                         <td><router-link :to="{name: 'person.show', params: {id: person.id}}">{{ person.name}}</router-link></td>
@@ -19,7 +19,7 @@
                         <td>{{ person.job}}</td>
                         <td><router-link :to="{name: 'person.edit', params: {id: person.id}}" class="btn btn-outline-success">Edit</router-link></td>
                         <td><router-link :to="{name: 'person.show', params: {id: person.id}}" class="btn btn-outline-primary">Detail</router-link></td>
-                        <td><a @click.prevent="deletePerson(person.id)" href="#" class="btn btn-outline-danger">Delete</a></td>
+                        <td><a @click.prevent="$store.dispatch('deletePerson', person.id)" href="#" class="btn btn-outline-danger">Delete</a></td>
                     </tr>
                 </template>
             </tbody>
@@ -30,26 +30,17 @@
 <script>
 export default {
     name: "Index",
-    data(){
-        return{
-            people: null
-        }
-    },
+
     mounted() {
-        this.getPeople();
+        this.$store.dispatch('getPeople');
     },
     methods: {
-        getPeople(){
-            axios.get('/api/people')
-                .then(res => {
-                    this.people = res.data.data
-                })
-        },
-        deletePerson(id){
-            axios.delete(`/api/people/${id}`)
-                .then(res => {
-                    this.getPeople()
-                })
+
+
+    },
+    computed:{
+        people(){
+            return this.$store.getters.people
         }
     }
 }
